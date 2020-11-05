@@ -1,7 +1,9 @@
 require "jekyll"
+require 'net/http'
 require 'json'
 require 'deep_merge'
 require 'open-uri'
+
 
 module JekyllGetJson
   class GetJsonGenerator < Jekyll::Generator
@@ -21,9 +23,18 @@ module JekyllGetJson
 
       config.each do |d|
         begin
+          uri = URI(d['json'])
+          req = Net::HTTP::Get.new(uri.request_uri)
+          user = d['user']
+          pass = d['pass']
+          if user
+            req.basic_auth user, pass
+          end
+          resp = Net::HTTP.start(uri.hostname, uri.port) {|http|
+            http.request(req)
+          }
+          source = JSON.parse(resp)
           target = site.data[d['data']]
-          source = JSON.load(open(d['json']))
-
           if target
             target.deep_merge(source)
           else

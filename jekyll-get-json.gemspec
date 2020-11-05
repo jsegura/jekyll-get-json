@@ -6,9 +6,9 @@ Gem::Specification.new do |spec|
   spec.summary       = "Import remote JSON data into the data for a Jekyll site"
   spec.description   = "Import remote JSON data into the data for a Jekyll site"
   spec.version       = JekyllGetJson::VERSION
-  spec.authors       = ["Brock Fanning"]
-  spec.email         = ["brockfanning@gmail.com"]
-  spec.homepage      = "https://github.com/brockfanning/jekyll-get-json"
+  spec.authors       = ["Brock Fanning", "Markus Döring"]
+  spec.email         = ["brockfanning@gmail.com", "mdoering@gbif.org"]
+  spec.homepage      = "https://github.com/CatalogueOfLife/jekyll-get-json"
   spec.licenses      = ["MIT"]
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r!^(test|spec|features)/!)  }
   spec.require_paths = ["lib"]
